@@ -1,14 +1,15 @@
 from snowflake.snowpark import Session
 from snowflake.snowpark.functions import *
+import os
 
 connection_parameters = {
-    "account": "DRNHDAY-JL77246",
-    "user": "NASRULHASAN",
-    "password" : "***REMOVED***",
-    "role" : "ACCOUNTADMIN",
-    "warehouse" : "SNOWFLAKE_LEARNING_WH",
-    "database" : "SNOWFLAKE_LEARNING_DB",
-    "schema" : "NASRULHASAN_LOAD_SAMPLE_DATA_FROM_S3"
+    "account": os.environ.get("SNOWFLAKE_ACCOUNT"),
+    "user": os.environ.get("SNOWFLAKE_USER"),
+    "password": os.environ.get("SNOWFLAKE_PASSWORD"),
+    "role": os.environ.get("SNOWFLAKE_ROLE"),
+    "warehouse": os.environ.get("SNOWFLAKE_WAREHOUSE"),
+    "database": os.environ.get("SNOWFLAKE_DATABASE"),
+    "schema": os.environ.get("SNOWFLAKE_SCHEMA")
 }
 
 session = Session.builder.configs(connection_parameters).create()
